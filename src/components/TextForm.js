@@ -36,16 +36,16 @@ export default function TextForm(props) {
           <label for="myBox" className="form-label"> Text area </label>
           <textarea className="form-control" value={text} style={{background: (props.mode==='dark') ? '#222232': (props.mode==='blue')?'#043242' :'white', color: (props.mode==='dark' || props.mode==='blue') ? 'white' : 'black'}} onChange={handleOnChange} id="myBox" rows="8"></textarea>
         </div>
-        <button className= {`btn ${(props.mode==='dark' || props.mode==='blue') ? 'btn-dark' : 'btn-primary'} mx-2`} onClick={handleUpClick}> Convert to Uppercase</button>
-        <button className={`btn ${(props.mode==='dark' || props.mode==='blue') ? 'btn-dark' : 'btn-primary'} mx-2`} onClick={handleLowClick}> Convert to Lowercase</button>
-        <button className={`btn ${(props.mode==='dark' || props.mode==='blue') ? 'btn-dark' : 'btn-primary'} mx-2`} onClick={handleReverseClick}> Your own kejru </button>
-        <button className={`btn ${(props.mode==='dark' || props.mode==='blue') ? 'btn-dark' : 'btn-primary'} mx-2`} onClick={handleCopyClick}> Copy to Clipboard </button>
+        <button disabled ={text.length===0} className={`btn ${(props.mode==='dark' || props.mode==='blue')? 'btn-dark' : 'btn-primary'} mx-2 my-2`} onClick={handleUpClick}> Convert to Uppercase</button>
+        <button disabled ={text.length===0} className={`btn ${(props.mode==='dark' || props.mode==='blue')? 'btn-dark' : 'btn-primary'} mx-2 my-2`} onClick={handleLowClick}> Convert to Lowercase</button>
+        <button disabled ={text.length===0} className={`btn ${(props.mode==='dark' || props.mode==='blue')? 'btn-dark' : 'btn-primary'} mx-2 my-2`} onClick={handleReverseClick}> Your own kejru </button>
+        <button disabled ={text.length===0} className={`btn ${(props.mode==='dark' || props.mode==='blue')? 'btn-dark' : 'btn-primary'} mx-2 my-2`} onClick={handleCopyClick}> Copy to Clipboard </button>
       </div>
 
       <div className="container my-3" style={{color: (props.mode==='light') ? '#222232': 'white'}}>
         <h2 className="my-2">Your text summary</h2>
-        <p>{text.trim().split(/\s+/).length} words and {text.length} characters</p>
-           <p>Expected time to read : {Math.floor((Math.floor(text.trim().split(/\s+/).length/3))/60)} Minutes {(Math.floor(text.trim().split(/\s+/).length/3))%60} Seconds</p>
+        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+           <p>Expected time to read : {Math.floor((Math.floor(text.split(" ").filter((element)=>{return element.length!==0}).length/3))/60)} Minutes {(Math.floor(text.split(" ").filter((element)=>{return element.length!==0}).length/3))%60} Seconds</p>
            <p>NOTE: the time is calculated by considering that an avg person reads at speed of 180 wpm</p>
            <h2>Preview</h2>
            <p>{text}</p>
